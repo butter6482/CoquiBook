@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: coquibook
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    port: 3000
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: CALCOM_TELEMETRY_DISABLED
+        value: "1"
+      # Set these manually in the Render dashboard:
+      - key: DATABASE_URL
+        sync: false
+      - key: DATABASE_DIRECT_URL
+        sync: false
+      - key: NEXTAUTH_URL
+        sync: false
+      - key: NEXT_PUBLIC_WEBAPP_URL
+        sync: false
+      - key: NEXTAUTH_SECRET
+        generateValue: true
+      - key: CALENDSO_ENCRYPTION_KEY
+        generateValue: true
